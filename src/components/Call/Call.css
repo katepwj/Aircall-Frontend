@@ -1,0 +1,73 @@
+.callContainer{
+margin-bottom: 10px;
+text-decoration: none;
+ color:var(--text-color)
+}
+
+
+.callBox{
+  padding: 5px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1.7fr;
+  align-items: center;
+ transition: 0.3s;
+}
+.callBox:hover{
+ box-shadow: 0 2px 10px 0 var(--border-color);
+
+ }
+.callDate{
+  margin: auto;
+  color: var(--border-color);
+  font-size: smaller;
+  height: 0;
+  border: 1px var(--border-color) dashed;
+  background-color: pink;
+  margin-bottom: 22px;
+  text-align: center;
+  position: relative;
+}
+.box {
+  height: 30px;
+  width: 100%;
+  /* background-color: wheat; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line {
+  height: 1px;
+  flex-grow: 1;
+  background-color: var(--border-color);
+}
+
+.text {
+  margin: 0 5px;
+  color: var(--border-color);
+  font-size: smaller;
+}
+
+.callDetails{
+display: flex;
+flex-direction: column;
+gap: 10px;
+/* border-right: 1px dotted var(--border-color); */
+border-right: 1px dashed var(--border-color);
+
+
+ 
+}
+.callVia{
+  color: var(--border-color);
+  margin: 0;
+}
+
+.callTime{
+ margin: auto;
+ color: var(--border-color);
+ font-size: smaller;
+
+}

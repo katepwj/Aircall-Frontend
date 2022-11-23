@@ -1,0 +1,6 @@
+.listContainer{
+  max-height: 410px;
+overflow-y: auto;
+min-height: 100px;
+ 
+}

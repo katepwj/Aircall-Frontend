@@ -1,0 +1,23 @@
+.activityTabs{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+ align-items: center;
+  margin-bottom: 10px;
+}
+
+.activityTab{
+  padding: 5px;
+font-weight: 500;
+color: gray;
+width: 60%;
+text-align: center;
+margin: auto;
+}
+
+.activeTab{
+  font-weight: bolder;
+border-bottom: 2px solid var(--first-color);
+color: var(--text-color);
+}
+
