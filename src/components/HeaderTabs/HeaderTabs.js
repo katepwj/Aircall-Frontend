@@ -10,7 +10,9 @@ const HeaderTabs = () => {
   return (
     <div className="headerTabs">
       <NavLink
-        to="/activity"
+        // to="/activity"
+        exact 
+        to="/"
         className={titleClass(0)}
         onClick={() => setactiveIndex(0)}
       >

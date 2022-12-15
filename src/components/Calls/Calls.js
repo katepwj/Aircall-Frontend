@@ -3,7 +3,8 @@ import Call from '../Call/Call'
 import "./Calls.css"
 
 const Calls = (props) => {
-  const { list, loading, requestType } = props
+  const { list, loading } = props
+
 
   const noCallsMsg = (<h3 style={{ color: "var(--red-color)" }}>
     You don't have any calls in this category!
@@ -23,7 +24,6 @@ const Calls = (props) => {
               return (
                 <li key={index}>
                   <Call
-                    requestType={requestType}
                     item={item} />
                 </li>
               )

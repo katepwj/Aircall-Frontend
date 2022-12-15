@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Detail.css'
 import { fetchCall, updateCall } from '../../api/index'
-// BiArrowBack
 import { BiArrowBack } from 'react-icons/bi';
 import { getFullTime } from '../../utils/getTimeMethod'
 
@@ -19,9 +18,7 @@ const Detail = (props) => {
       const res = await fetchCall(id)
       setLoading(false)
       setCallDetails(res.data)
-
     } catch (err) {
-      setLoading(false)
       alert(err)
       console.log(err)
     }
@@ -37,12 +34,12 @@ const Detail = (props) => {
   }, [id])
 
 
-  // user to archive or unarchive a call
+  // user to archive or unarchive a call 
   const toggleArchive = async (id, status) => {
     console.log(status)
     try {
       const res = await updateCall(id, status)
-      alert("Updated succesfully")
+      alert(res.data)
       fetchDetail(id)
     } catch (err) {
       alert(err)
@@ -91,7 +88,7 @@ const Detail = (props) => {
                 <p>{callDetails.via}</p>
               </li>
               <li className="detailLine">
-                <p className="detailTitle">Status</p>
+                <p className="detailTitle">Call Type</p>
                 <p>{callDetails.call_type}</p>
               </li>
               <li className="detailLine">

@@ -23,9 +23,10 @@ const ToggleArchiveBtn = (props) => {
   // generate button text(archive/unarchive)
   const btnText = (type === "archive"
     ?
-    "Archive all calls"
+    "Archive all calls in this category"
     :
     "Unarchive all calls")
+    
  return (
     <div>
       {/* show archive/unarchive all button */}

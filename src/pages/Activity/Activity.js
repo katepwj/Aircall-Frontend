@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { fetchCalls, updateCall } from '../../api/index'
+import { fetchCalls} from '../../api/index'
 import './Activity.css'
 import Calls from "../../components/Calls/Calls";
 import ActivityTabs from "../../components/ActivityTabs/ActivityTabs";
-import ToggleArchiveBtn from "../../components/ToggleArchiveBtn/ToggleArchiveBtn";
+// import ToggleArchiveBtn from "../../components/ToggleArchiveBtn/ToggleArchiveBtn";
 
 const Activity = () => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -19,8 +19,9 @@ const Activity = () => {
     setRequestType(type)
   }
 
-  // fetch all calls without archived  function
-  const fetchActivityCalls = async () => {
+
+  // fetch all calls without archived calls function
+  const fetchActivityFunc = async () => {
     setLoading(true)
     try {
       const res = await fetchCalls()
@@ -29,7 +30,7 @@ const Activity = () => {
         item.is_archived !== true
       )
       setActivityCalls(updatedRes)
-
+      setFilteredCalls(updatedRes)
     } catch (err) {
       alert(err)
       console.log(err)
@@ -38,46 +39,33 @@ const Activity = () => {
   }
 
 
-  // To fetch all calls in the Activity Feed without archived 
-  useEffect(() => {
-    fetchActivityCalls()
-    return () => {
-      setActivityCalls([])
-    }
-  }, [requestType])
-
-
-  // To archive all calls
-  const handleArchiveAll = () => {
-    setLoading(true)
-    if (requestType === "all") {
-      activityCalls.map(item => {
-        updateCall(item.id, true)
-        setActivityCalls([])
-      })
-    } else {
-      filteredCalls.map(item => {
-        updateCall(item.id, true)
-      })
-      setFilteredCalls([])
-    }
-    alert("Archived succesfully!")
-    setLoading(false)
-  }
-
-  // retrive calls for each tab without archived
-  useEffect(() => {
-    if (requestType === "all") {
+  // filter calls function for each sub tab under Acitivity page
+  const filterCallsFunc = (type) => {
+    // getl all calls exclude the archived ones 
+    if (type === "all") {
       setFilteredCalls([...activityCalls])
     }
-    // to get inbound calls 
-    else if (requestType === "inbound") {
+    // filter by Inbound calls 
+    else if (type === "inbound") {
       setFilteredCalls([...activityCalls].filter(item => item.direction === "inbound"))
     }
     else {
-      // to get missed calls
+      // filter by Missed calls
       setFilteredCalls([...activityCalls].filter(item => item.call_type === "missed"))
     }
+  }
+
+  // To fetch all calls in the Activity Feed without archived calls 
+  useEffect(() => {
+       fetchActivityFunc()
+    return () => {
+      setActivityCalls([])
+    }
+  }, [])
+
+  // retrive calls for each tab without archived
+  useEffect(() => {
+    filterCallsFunc(requestType)
     return () => {
       setFilteredCalls([])
     }
@@ -95,17 +83,10 @@ const Activity = () => {
         activeIndex={activeIndex}
       />
 
-      {/* show archive all button */}
-      <ToggleArchiveBtn
-        list={requestType === "all" ? activityCalls : filteredCalls}
-        type="archive"
-        toggleArchive={handleArchiveAll}
-      />
-
       {/* show call list */}
       <Calls
         loading={loading}
-        list={requestType === "all" ? activityCalls : filteredCalls}
+        list={filteredCalls}
         requestType={requestType}
       />
     </div>

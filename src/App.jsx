@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Header from './Header.jsx';
 import { BrowserRouter } from "react-router-dom";
- import Footer from './components/Footer/Footer.js';
+import Footer from './components/Footer/Footer.js';
 import HeaderTabs from './components/HeaderTabs/HeaderTabs.js';
 import Activity from './pages/Activity/Activity'
 import Detail from './pages/Detail/Detail'
@@ -19,9 +19,8 @@ const App = () => {
       <Header />
       <div className="container-view">
         <HeaderTabs />
-           <Switch>
+        <Switch>
           <Route exact path="/" component={Activity} />
-          <Route path="/activity" component={Activity} />
           <Route path="/detail/:id" component={Detail} />
           <Route path="/archived" component={Archived} />
         </Switch>

@@ -10,25 +10,26 @@ const Archived = () => {
   const [loading, setLoading] = useState(false)
 
   // fetch archived calls function
-  const fetchArchivedCalls = async () => {
+  const fetchArchivedFunc = async () => {
     setLoading(true)
     try {
       const res = await fetchCalls()
+    
       // to exclude the activity calls from response
       const updatedRes = res.data.filter(item =>
         item.is_archived == true
       )
       setArchivedCalls(updatedRes)
+      setLoading(false)
     } catch (err) {
       alert(err)
       console.log(err)
     }
-    setLoading(false)
   }
 
   // fetch archived calls
   useEffect(() => {
-    fetchArchivedCalls()
+    fetchArchivedFunc()
     return () => {
       setArchivedCalls([])
     }
@@ -39,8 +40,9 @@ const Archived = () => {
     setLoading(true)
     try {
       const res = await resetCalls()
+      alert(res.data)
       setArchivedCalls([])
-      alert("Unarchived succesfully!")
+
     } catch (err) {
       alert(err)
       console.log(err)
