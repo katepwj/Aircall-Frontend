@@ -1,6 +1,6 @@
 Project: AirCall front-end built with React
 
-Instructions:https://github.com/speer-technologies/aircall
+
 
 1.The App has two main Pages: Activity (excluding archived calls) and Archived Page.
 
